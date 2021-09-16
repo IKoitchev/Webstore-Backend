@@ -4,10 +4,10 @@ stages:
 
 build:
  stage: build
-  script:
-    - ./gradlew build -x test
+ script:
+    - VideoGameStore/gradlew build --exclude-task test
 
 test:
   stage: test
   script:
-    - ./gradlew test
+    - VideoGameStore/gradlew test
