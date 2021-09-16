@@ -1,0 +1,13 @@
+stages:
+- build
+- test
+
+build:
+ stage: build
+ script:
+    - VideoGameStore/gradlew build --exclude-task test
+
+test:
+  stage: test
+  script:
+    - VideoGameStore/gradlew test
