@@ -5,7 +5,7 @@ stages:
 build:
  stage: build
  script:
-    - gradle -v
+    - VideoGameStore/gradlew build -x test
 
 test:
   stage: test
