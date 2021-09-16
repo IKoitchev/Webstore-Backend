@@ -4,7 +4,7 @@ stages:
 
 build:
  stage: build
-  script:
+ script:
     - ./gradlew build -x test
 
 test:
