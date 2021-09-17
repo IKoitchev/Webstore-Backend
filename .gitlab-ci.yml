@@ -5,9 +5,11 @@ stages:
 build:
   stage: build
   script:
-    - VideoGameStore/gradlew build 
+    - cd VideoGameStore
+    - gradlew build -x test
 
 test:
   stage: test
   script:
-    - VideoGameStore/gradlew tasks --all
+    - cd VideoGameStore
+    - gradlew test
