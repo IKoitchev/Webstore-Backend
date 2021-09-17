@@ -3,9 +3,9 @@ stages:
 - test
 
 build:
- stage: build
- script:
-    - VideoGameStore/gradlew build -x test
+  stage: build
+  script:
+    - VideoGameStore/gradlew build
 
 test:
   stage: test
