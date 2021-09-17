@@ -10,4 +10,4 @@ build:
 test:
   stage: test
   script:
-    - VideoGameStore/gradlew test
+    - VideoGameStore/src/test/java/com/store/VideoGameStore run
