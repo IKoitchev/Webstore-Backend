@@ -10,4 +10,4 @@ build:
 test:
   stage: test
   script:
-    - VideoGameStore/gradlew testClasses
+    - VideoGameStore/gradlew test
