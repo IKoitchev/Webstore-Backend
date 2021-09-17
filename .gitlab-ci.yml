@@ -6,10 +6,10 @@ build:
   stage: build
   script:
     - cd VideoGameStore
-    - get-location
+    - gradle build
 
 test:
   stage: test
   script:
-    - get-location
-    - gradle build
+    - cd VideoGameStore
+    - gradle test
