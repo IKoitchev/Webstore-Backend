@@ -5,9 +5,10 @@ stages:
 build:
   stage: build
   script:
+    - cd VideoGameStore
     - get-location
 
 test:
   stage: test
   script:
-    - gradlew test
+    - gradlew build
