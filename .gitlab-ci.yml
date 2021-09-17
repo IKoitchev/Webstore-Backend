@@ -3,11 +3,13 @@ stages:
 - test
 
 build:
- stage: build
- script:
+  image: gradle:7.1.1
+  stage: build
+  script:
     - VideoGameStore/gradlew build -x test
 
 test:
+  image: gradle:7.1.1
   stage: test
   script:
     - VideoGameStore/gradlew test
