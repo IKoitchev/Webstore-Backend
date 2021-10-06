@@ -1,5 +1,8 @@
 package com.store.VideoGameStore.models;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin(origins = "http://localhost:8080/games")
 public class Game {
 
     private int id;

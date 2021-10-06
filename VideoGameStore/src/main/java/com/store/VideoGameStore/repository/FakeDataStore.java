@@ -11,12 +11,14 @@ public class FakeDataStore {
     private List<Game> gameList = new ArrayList<>();
 
     public FakeDataStore(){
-        gameList.add(new Game (1, "Among us", "social", "--", 4));
+        gameList.add(new Game (1, "Among us", "social deduction game", "Among Us is a computer game developed by the company InnerSloth and released in 2018, described as an \"online multiplayer social deduction game\"", 4));
+        gameList.add(new Game (2, "Minecraft", "sandbox", "Minecraft is a video game in which players create and break apart various kinds of blocks in three-dimensional worlds", 5));
     }
 
     public List<Game> getAllGames () {
         return gameList;
     }
+
     private Game getGame(int id) {
         for(Game game : gameList){
             if(game.getId() == id) {

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "/games")
@@ -14,6 +16,12 @@ public class GameController {
 
     @Autowired
     FakeDataStore fds = new FakeDataStore();
+
+
+    @GetMapping("/all")
+    public List<Game> getAllGames(){
+        return fds.getAllGames();
+    }
 
     @GetMapping("{name}")
     public ResponseEntity<Game> getGame(@PathVariable(value = "name") String name) {
