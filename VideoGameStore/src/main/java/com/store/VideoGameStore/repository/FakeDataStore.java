@@ -19,7 +19,7 @@ public class FakeDataStore {
         return gameList;
     }
 
-    private Game getGame(int id) {
+    private Game getGame(long id) {
         for(Game game : gameList){
             if(game.getId() == id) {
                 return game;

@@ -1,20 +1,33 @@
 package com.store.VideoGameStore.models;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import javax.persistence.*;
+
 @CrossOrigin(origins = "http://localhost:8080/games")
+@Entity(name="game")
 public class Game {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "genre")
     private String genre = " ";
+    @Column(name = "description")
     private String description = " ";
+    @Column(name = "price")
     private double price = 0;
+    @Column(name="author")
+    private String author = " ";
 
     public Game (){
 
     }
-    public Game(int id, String name, String genre, String description, double price) {
+    public Game(long id, String name, String genre, String description, double price) {
         this.id = id;
         this.name = name;
         this.genre = genre;
@@ -26,7 +39,7 @@ public class Game {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
