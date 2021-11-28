@@ -1,6 +1,7 @@
 stages:
 - build
 - test
+- sonarqube-check
 
 build:
   stage: build
@@ -13,3 +14,8 @@ test:
   script:
      - cd VideoGameStore
      - ./gradlew test
+sonarqube-check:
+  stage: sonarqube-check
+  script:
+    - cd VideoGameStore
+    - ./gradlew tasks --all
