@@ -18,4 +18,4 @@ sonarqube-check:
   stage: sonarqube-check
   script:
     - cd VideoGameStore
-    - ./gradlew tasks --all
+    - ./gradlew sonarqube -D"sonar.qualitygate.wait=true" -D"sonar.login=eaffffbef98d5602fa9087660b38ac09a251f281" -D"sonar.host.url=http://localhost:9000"
