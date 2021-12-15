@@ -4,7 +4,6 @@ import com.store.VideoGameStore.models.Game;
 import com.store.VideoGameStore.repository.FakeDataStore;
 import com.store.VideoGameStore.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -69,7 +68,8 @@ public class GameController {
             return ResponseEntity.badRequest().body("game with id " + game.getId() + " does not exist!");
         }
         gameRepository.save(game);
-        return ResponseEntity.created(URI.create(String.format("games/%s", game.getName()))).body("Game updated successfully!");
+        return ResponseEntity.created(URI.create(String.format("games/%s", game.getName().
+                replaceAll(" ","%20")))).body("Game updated successfully!");
     }
 
     @GetMapping("/genre/{genre}")
