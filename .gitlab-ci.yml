@@ -13,7 +13,7 @@ test:
   stage: test
   script:
      - cd VideoGameStore
-     - ./gradlew test
+     - gradle test
 sonarqube-check:
   stage: sonarqube-check
   script:
