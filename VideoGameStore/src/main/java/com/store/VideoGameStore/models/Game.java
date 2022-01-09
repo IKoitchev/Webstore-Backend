@@ -23,6 +23,24 @@ public class Game {
     private double price = 0;
     @Column(name="author")
     private String author = " ";
+    @Column(name="url")
+    private String imageUrl;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public Game (){
 

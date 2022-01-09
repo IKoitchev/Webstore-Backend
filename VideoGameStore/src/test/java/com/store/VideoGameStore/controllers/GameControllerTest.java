@@ -21,8 +21,9 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+
 @RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class GameControllerTest {
 
 
@@ -55,6 +56,8 @@ public class GameControllerTest {
         Assert.assertEquals(true, result.getBody().contains("name"));
         Assert.assertEquals(true, result.getBody().contains("description"));
         Assert.assertEquals(true, result.getBody().contains("price"));
+        //Assert.assertTrue(false);
+
     }
     @Test
     void testGetProductByName() throws URISyntaxException {

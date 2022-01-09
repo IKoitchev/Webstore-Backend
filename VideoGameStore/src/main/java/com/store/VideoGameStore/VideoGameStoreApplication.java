@@ -8,7 +8,6 @@ public class VideoGameStoreApplication {
 
 	public static void main(String[] args) {
 			SpringApplication.run(VideoGameStoreApplication.class, args);
-
 	}
 
 

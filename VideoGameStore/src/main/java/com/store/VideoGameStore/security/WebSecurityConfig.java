@@ -63,8 +63,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/games/**").permitAll()
                 .antMatchers("/reviews/get*").permitAll()
+                .antMatchers("/orders/**").permitAll()
+                .antMatchers("/message/**").permitAll()
+                .antMatchers("/message**").permitAll()
+                .antMatchers("/ws/**").permitAll()
+                .antMatchers("/topic/**").permitAll()
+                .antMatchers("/chat/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.headers().frameOptions().disable();
     }
 }
