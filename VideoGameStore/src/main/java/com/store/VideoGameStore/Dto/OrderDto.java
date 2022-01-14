@@ -3,7 +3,7 @@ package com.store.VideoGameStore.Dto;
 public class OrderDto {
 
     private long userId;
-    private boolean orderFinished;
+    private boolean orderFinished=false;
     private long gameId;
     //private long orderId;
 

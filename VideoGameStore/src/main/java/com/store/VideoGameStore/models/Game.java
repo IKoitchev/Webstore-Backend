@@ -1,6 +1,5 @@
 package com.store.VideoGameStore.models;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
@@ -24,7 +23,7 @@ public class Game {
     @Column(name="author")
     private String author = " ";
     @Column(name="url")
-    private String imageUrl;
+    private String url;
 
     public String getAuthor() {
         return author;
@@ -34,12 +33,12 @@ public class Game {
         this.author = author;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getUrl() {
+        return url;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setUrl(String imageUrl) {
+        this.url = imageUrl;
     }
 
     public Game (){
@@ -51,10 +50,6 @@ public class Game {
         this.genre = genre;
         this.description = description;
         this.price = price;
-    }
-    public Game(int id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public long getId() {
@@ -97,8 +92,5 @@ public class Game {
         this.price = price;
     }
 
-    @Override
-    public String toString(){
-        return this.id + "\\r\\n" + this.name + "\\r\\n" + this.genre;
-    }
+
 }

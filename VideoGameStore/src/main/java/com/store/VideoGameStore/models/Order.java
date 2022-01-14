@@ -21,7 +21,7 @@ public class Order {
     private long userId;
 
     @Column(name="order_finished")
-    private boolean orderFinished;
+    private boolean orderFinished = false;
 
     @Column(name="purchase_date")
     private Date purchaseDate;
@@ -41,6 +41,10 @@ public class Order {
 
     public Order() {
 
+    }
+
+    public Order(long userId) {
+        this.userId = userId;
     }
 
     public long getId() {

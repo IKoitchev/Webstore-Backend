@@ -1,9 +1,10 @@
 package com.store.VideoGameStore.controllers;
 
-import com.store.VideoGameStore.VideoGameStoreApplication;
+import com.store.VideoGameStore.testConfig.TestSecurityConfig;
 
 import com.store.VideoGameStore.models.Game;
 import com.store.VideoGameStore.repository.GameRepository;
+import com.store.VideoGameStore.repository.ReviewRepository;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -11,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -23,7 +22,8 @@ import java.net.URISyntaxException;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestSecurityConfig.class)
+
 public class GameControllerTest {
 
 
@@ -32,6 +32,8 @@ public class GameControllerTest {
 
     @Autowired
     GameRepository gameRepository;
+    @Autowired
+    ReviewRepository reviewRepository;
 
     public Game getTestGame() {
         Game game = new Game();
@@ -42,8 +44,13 @@ public class GameControllerTest {
 
         return game;
     }
+
+
+
+
     @Test
     void testGetAllGames() throws URISyntaxException {
+
         RestTemplate restTemplate = new RestTemplate();
 
         final String baseURI = "http://localhost:" + randomSeverPort + "/games/all";
@@ -74,6 +81,7 @@ public class GameControllerTest {
     }
     @Test
     void testAddProduct() throws URISyntaxException {
+
         RestTemplate restTemplate = new RestTemplate();
         Game game = getTestGame();
 
@@ -93,10 +101,41 @@ public class GameControllerTest {
     @Test
     void testUpdateGame() throws URISyntaxException {
 
-        RestTemplate restTemplate = new RestTemplate();
 
+        RestTemplate restTemplate = new RestTemplate();
         gameRepository.save(getTestGame());
         Game game = gameRepository.findByName("testGame");
+        game.setName("testGame");
+        game.setPrice(15);
+        game.setDescription("A mock game used for testing but updated");
+        game.setGenre("new genre");
+
+        final String baseURI = "http://localhost:" + randomSeverPort + "/games/";
+        URI uri = new URI(baseURI);
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+
+
+        HttpEntity<Game> request = new HttpEntity<>(game, httpHeaders);
+
+        ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.PUT, request, String.class);
+
+
+        Assert.assertEquals(201, result.getStatusCodeValue());
+
+
+        gameRepository.deleteById(gameRepository.findByName("testGame").getId());
+
+    }
+    //unhappy flow !
+    @Test
+    void TestUpdateGameThatDoesNotExist() throws URISyntaxException {
+
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        Game game = getTestGame();
         game.setName("testGame 2");
         game.setPrice(15);
         game.setDescription("A mock game used for testing but updated");
@@ -108,16 +147,20 @@ public class GameControllerTest {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
-        //game.setName(game.getName().replaceAll(" ","%20"));
         HttpEntity<Game> request = new HttpEntity<>(game, httpHeaders);
-        //System.out.println(request.getBody().getName() + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.PUT, request, String.class);
+
+        try {
+            ResponseEntity<?> result = restTemplate.exchange(uri, HttpMethod.PUT, request, String.class);
+            Assert.assertEquals(400, result.getStatusCodeValue());
+             Assert.assertEquals("game with name " + game.getName() + " does not exist!", result.getBody());
+
+        } catch (HttpStatusCodeException e) {
+            // if it goes in catch then it has returned a 401 code, which is what i am looking for in this test
+            //rest template crashes no 4xx codes by default
+                Assert.assertTrue(!e.getMessage().isEmpty());
+        }
 
 
-        Assert.assertEquals(201, result.getStatusCodeValue());
-
-
-        gameRepository.deleteById(gameRepository.findByName("testGame 2").getId());
 
     }
     @Test
@@ -134,6 +177,22 @@ public class GameControllerTest {
 
         Assert.assertEquals(200, result.getStatusCodeValue());
     }
+    @Test
+    void testGetAllGamesOwnedByUser() throws URISyntaxException {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String username = "TestUser";
+
+        final String baseURI = "http://localhost:" + randomSeverPort + "/games/ownedBy/" + username;
+        URI uri = new URI(baseURI);
+
+        ResponseEntity<?> result = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
+
+
+        Assert.assertEquals(200, result.getStatusCodeValue());
+
+    }
+
 
 
 }

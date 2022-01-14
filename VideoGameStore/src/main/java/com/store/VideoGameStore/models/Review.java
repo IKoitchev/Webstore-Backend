@@ -9,6 +9,10 @@ import java.util.Date;
 @Entity(name = "reviews")
 public class Review {
 
+    // this model represents the relation between user and game
+    // each user can write 1 review per game they own
+    // review entity is saved upon product purchase with an empty text
+    // its text is updated when the user decides to "write a review"
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,6 +30,10 @@ public class Review {
         this.author = author;
         this.gameId = gameId;
         this.datePosted = datePosted;
+    }
+    public Review(String author, long gameId) {
+        this.author = author;
+        this.gameId = gameId;
     }
 
     public Review() {
