@@ -15,7 +15,7 @@ public class MyCorsFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
-
+        //override
     }
 
     @Override
@@ -33,6 +33,6 @@ public class MyCorsFilter implements Filter {
 
     @Override
     public void destroy() {
-
+        //override
     }
 }

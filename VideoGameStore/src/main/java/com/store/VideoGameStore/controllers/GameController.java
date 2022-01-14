@@ -98,15 +98,9 @@ public class GameController {
         }
         gameRepository.save(game);
         return ResponseEntity.created(URI.create(String.format("games/%s", game.getName().
-                replaceAll(" ","%20")))).body("Game updated successfully!");
+                replace(" ","%20")))).body("Game updated successfully!");
     }
 
-//    @GetMapping("/genre/{genre}")
-//    public ResponseEntity<?> getGameByGenre(@PathVariable(value="genre") String genre) {
-//
-//        gameRepository.findByGenre(genre)
-//        return ResponseEntity.ok().body();
-//
-//    }
+
 
 }

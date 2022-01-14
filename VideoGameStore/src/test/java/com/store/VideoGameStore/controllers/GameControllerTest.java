@@ -23,7 +23,6 @@ import java.net.URISyntaxException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestSecurityConfig.class)
-
 public class GameControllerTest {
 
 
