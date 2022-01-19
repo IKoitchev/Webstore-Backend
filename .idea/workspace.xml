@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5a27509-c701-413d-95d1-a539b59c6c2f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/VideoGameStore/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/VideoGameStore/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VideoGameStore/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/VideoGameStore/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="a5a27509-c701-413d-95d1-a539b59c6c2f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,7 +19,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/VideoGameStore" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -33,6 +30,7 @@
       <option name="presentableId" value="Default" />
       <updated>1635204346575</updated>
       <workItem from="1635204351514" duration="21000" />
+      <workItem from="1642540361382" duration="610000" />
     </task>
     <servers />
   </component>
